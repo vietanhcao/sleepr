@@ -1,0 +1,35 @@
+services:
+  reservations:
+    build:
+      context: .
+      dockerfile: ./apps/reservations/DockerFile
+      target: development
+    command: pnpm run start:dev reservations
+    ports:
+      - '3003:3003'
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - my-network
+
+  mongo_sleeper:
+    container_name: mongo_sleeper
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    restart: always
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+    # ipam:
+    #   config:
+    #     - subnet: 172.31.27.0/24

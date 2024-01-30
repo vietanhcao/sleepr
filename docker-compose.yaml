@@ -11,6 +11,18 @@ services:
       - .:/usr/src/app
     networks:
       - my-network
+  auth:
+    build:
+      context: .
+      dockerfile: ./apps/auth/DockerFile
+      target: development
+    command: pnpm run start:dev auth
+    ports:
+      - '3004:3004'
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - my-network
 
   mongo_sleeper:
     container_name: mongo_sleeper

@@ -13,6 +13,7 @@ services:
       - .:/usr/src/app
     networks:
       - my-network
+
   auth:
     build:
       context: .
@@ -23,6 +24,21 @@ services:
       - ./apps/auth/.env
     ports:
       - '3004:3004'
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - my-network
+
+  payments:
+    build:
+      context: .
+      dockerfile: ./apps/payments/DockerFile
+      target: development
+    command: pnpm run start:dev payments
+    env_file:
+      - ./apps/payments/.env
+    ports:
+      - '3005:3005'
     volumes:
       - .:/usr/src/app
     networks:

@@ -37,8 +37,6 @@ services:
     command: pnpm run start:dev payments
     env_file:
       - ./apps/payments/.env
-    ports:
-      - '3005:3005'
     volumes:
       - .:/usr/src/app
     networks:

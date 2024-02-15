@@ -1,6 +1,10 @@
 import { Module } from '@nestjs/common';
-import { ModelDefinition, MongooseModule } from '@nestjs/mongoose';
 import { ConfigService } from '@nestjs/config';
+import {
+  ModelDefinition,
+  MongooseModule,
+  MongooseModuleAsyncOptions,
+} from '@nestjs/mongoose';
 
 @Module({
   imports: [
@@ -20,5 +24,9 @@ import { ConfigService } from '@nestjs/config';
 export class DatabaseModule {
   static forFeature(models: ModelDefinition[]) {
     return MongooseModule.forFeature(models);
+  }
+
+  static forRootAsync(options: MongooseModuleAsyncOptions) {
+    return MongooseModule.forRootAsync(options);
   }
 }

@@ -28,8 +28,6 @@ export class ReservationsController {
       user._id,
     );
 
-    console.log(user);
-
     return reservatiion;
   }
 

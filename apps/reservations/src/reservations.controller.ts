@@ -25,7 +25,7 @@ export class ReservationsController {
   ) {
     const reservatiion = await this.reservationsService.create(
       createReservationDto,
-      user._id,
+      user,
     );
 
     return reservatiion;

@@ -42,6 +42,19 @@ services:
     networks:
       - my-network
 
+  notifications:
+    build:
+      context: .
+      dockerfile: ./apps/notifications/DockerFile
+      target: development
+    command: pnpm run start:dev notifications
+    env_file:
+      - ./apps/notifications/.env
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - my-network
+
   mongo_sleeper:
     container_name: mongo_sleeper
     image: mongo:latest

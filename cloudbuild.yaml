@@ -7,7 +7,7 @@ steps:
         '-t',
         'asia-southeast1-docker.pkg.dev/sleepr-414504/reservations/production',
         '-f',
-        'apps/reservations/Dockerfile',
+        './apps/reservations/Dockerfile',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
@@ -25,7 +25,7 @@ steps:
         '-t',
         'asia-southeast1-docker.pkg.dev/sleepr-414504/auth/production',
         '-f',
-        'apps/auth/Dockerfile',
+        './apps/auth/Dockerfile',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
@@ -43,7 +43,7 @@ steps:
         '-t',
         'asia-southeast1-docker.pkg.dev/sleepr-414504/notifications/production',
         '-f',
-        'apps/notifications/Dockerfile',
+        './apps/notifications/Dockerfile',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
@@ -61,7 +61,7 @@ steps:
         '-t',
         'asia-southeast1-docker.pkg.dev/sleepr-414504/payments/production',
         '-f',
-        'apps/payments/Dockerfile',
+        './apps/payments/Dockerfile',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'

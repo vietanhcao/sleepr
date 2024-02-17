@@ -71,3 +71,51 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+# Google Cloud Container Deployment
+
+This guide outlines the steps to deploy a containerized application on Google Cloud Platform.
+
+## Prerequisites
+
+- [Google Cloud SDK](https://cloud.google.com/sdk/docs/install)
+
+## Steps
+
+1. **Create New Configuration**:
+    ```bash
+    gcloud config configurations create sleepr
+    ```
+
+2. **Set Project**:
+    ```bash
+    gcloud config set project sleepr-414504
+    ```
+
+3. **Login Default**:
+    Follow the instructions [here](https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login).
+
+4. **List Repositories**:
+    ```bash
+    gcloud artifacts repositories list
+    ```
+
+5. **Configure Docker for GCloud**:
+    ```bash
+    gcloud auth configure-docker asia-southeast1-docker.pkg.dev
+    ```
+
+6. **Build Image**:
+    ```bash
+    docker build -t reservations . -f ./apps/reservations/Dockerfile
+    ```
+
+7. **Tag Image (Change Name Before Pushing)**
+
+8. **Push Image**:
+    ```bash
+    docker image push asia-southeast1-docker.pkg.dev/sleepr-414504/reservations/production
+    ```
+
+

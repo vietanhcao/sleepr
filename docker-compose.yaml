@@ -2,7 +2,7 @@ services:
   reservations:
     build:
       context: .
-      dockerfile: ./apps/reservations/DockerFile
+      dockerfile: ./apps/reservations/Dockerfile
       target: development
     command: pnpm run start:dev reservations
     env_file:
@@ -17,7 +17,7 @@ services:
   auth:
     build:
       context: .
-      dockerfile: ./apps/auth/DockerFile
+      dockerfile: ./apps/auth/Dockerfile
       target: development
     command: pnpm run start:dev auth
     env_file:
@@ -32,7 +32,7 @@ services:
   payments:
     build:
       context: .
-      dockerfile: ./apps/payments/DockerFile
+      dockerfile: ./apps/payments/Dockerfile
       target: development
     command: pnpm run start:dev payments
     env_file:
@@ -45,7 +45,7 @@ services:
   notifications:
     build:
       context: .
-      dockerfile: ./apps/notifications/DockerFile
+      dockerfile: ./apps/notifications/Dockerfile
       target: development
     command: pnpm run start:dev notifications
     env_file:

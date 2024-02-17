@@ -6,12 +6,18 @@ WORKDIR /usr/src/app
 #  Sao chép các tệp package.json và pnpm-lock.yaml vào thư mục làm việc trong container.
 COPY package.json ./
 COPY pnpm-lock.yaml ./
+COPY tsconfig.json tsconfig.json
 
 RUN npm install -g pnpm
 
+# install root package.json
 RUN pnpm install
-# Sao chép tất cả các tệp trong thư mục hiện tại của dự án vào thư mục làm việc trong container.
-COPY . .
+# Sao chép file cần thiết trong thư mục hiện tại của dự án vào thư mục làm việc trong container.
+COPY apps/auth apps/auth
+COPY libs libs
+
+# install service package.json
+RUN cd apps/auth && pnpm install
 
 RUN pnpm run build
 
